@@ -1,19 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import * as reducers from './reducers';
-import {Provider} from 'react-redux';
-import {combineReducers, createStore} from 'redux';
-import {theme} from './theme';
-import {ThemeProvider} from '@material-ui/core';
-import {createBrowserHistory} from 'history';
-import {Notification} from './components/Notification';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import * as reducers from "./reducers";
+import { Provider } from "react-redux";
+import { combineReducers, createStore } from "redux";
+import { theme } from "./theme";
+import { ThemeProvider } from "@material-ui/core";
+import { createBrowserHistory } from "history";
+import { Notification } from "./components/Notification";
 
 export const history = createBrowserHistory();
 const reducer = combineReducers({
-  ...reducers,
+  ...reducers
 });
 
 declare global {
@@ -24,9 +24,9 @@ declare global {
 
 window.__REDUX_DEVTOOLS_EXTENSION__ = window.__REDUX_DEVTOOLS_EXTENSION__ || {};
 
-const store = createStore(
+export const store = createStore(
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 ReactDOM.render(
@@ -36,7 +36,7 @@ ReactDOM.render(
       <Notification />
     </ThemeProvider>
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -1,26 +1,25 @@
+import React, { Dispatch } from "react";
+
 import { IUser, ILoginRequest } from "../types/auth";
 import { ICallApiRequest } from "../types/callApi";
 import { callApi } from "../helpers/callApi";
-import { history } from "../";
+import { history, store } from "../";
 import { PATH } from "../constants";
-import { notification } from "../reducers";
-import {
-  updateNotificationAction,
-  IUpdateNotificationAction
-} from "./notification";
-import { NOTIFICATION_TYPE } from "../types/notification";
 import { useDispatch } from "react-redux";
-import { Dispatch } from "react";
+import { updateNotificationAction } from "./notification";
+import { NOTIFICATION_TYPE } from "../types/notification";
 
 export const LOGIN = "LOGIN";
 export type LOGIN = typeof LOGIN;
-
 export interface ILoginAction {
   type: LOGIN;
   payload: ICallApiRequest;
 }
 
-export const loginAction = (request: ILoginRequest): ILoginAction => {
+export const loginAction = (
+  request: ILoginRequest,
+  dispatch: any
+): ILoginAction => {
   const url = "api/v1/login/";
   const method = "POST";
 
@@ -30,19 +29,17 @@ export const loginAction = (request: ILoginRequest): ILoginAction => {
     params: request
   };
 
+  store.dispatch(
+    updateNotificationAction({
+      show: true,
+      message: "hello world",
+      type: NOTIFICATION_TYPE.success
+    })
+  );
+
   callApi(payload)
     .then(async (response: any) => {
       localStorage.setItem("token", "qrewqsdfwe123asd3xzc");
-
-      //const dispatch = useDispatch<Dispatch<IUpdateNotificationAction>>();
-
-      // dispatch(
-      //   updateNotificationAction({
-      //     show: true,
-      //     message: "hello world",
-      //     type: NOTIFICATION_TYPE.success
-      //   })
-      // );
 
       const user = await response.json();
       if (user && user.data) {

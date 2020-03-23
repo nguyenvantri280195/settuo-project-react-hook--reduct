@@ -36,6 +36,15 @@ export const Notification = () => {
       })
     );
 
+  setTimeout(() => {
+    dispatch(
+      updateNotificationAction({
+        ...notication,
+        show: false
+      })
+    );
+  }, 100000);
+
   return (
     <Grid className={classes.root}>
       <Snackbar

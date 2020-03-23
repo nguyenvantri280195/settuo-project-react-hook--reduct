@@ -13,11 +13,11 @@ export const LogIn: React.FC = () => {
   const handeSetPassword = (event: any) =>
     setPassword(event.currentTarget.value);
 
-  const dispatch = useDispatch<Dispatch<ILoginAction>>();
+  const dispatch = useDispatch();
   //const handleSubmit = async () => await CallApi(data);
 
   const handleSubmit = () => {
-    dispatch(loginAction({ email, password }));
+    dispatch(loginAction({ email, password }, dispatch));
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
