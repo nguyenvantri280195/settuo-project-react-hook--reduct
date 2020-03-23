@@ -1,12 +1,14 @@
-import React, {Dispatch} from 'react';
-import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-import {makeStyles} from '@material-ui/core/styles';
-import {IStoreState} from '../types';
-import {useSelector, useDispatch} from 'react-redux';
-import {Grid} from '@material-ui/core';
-import {IUpdateNotificationAction, updateNotificationAction} from '../actions';
+import React, { Dispatch } from "react";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { makeStyles } from "@material-ui/core/styles";
+import { IStoreState } from "../types";
+import { useSelector, useDispatch } from "react-redux";
+import { Grid } from "@material-ui/core";
+import {
+  IUpdateNotificationAction,
+  updateNotificationAction
+} from "../actions";
 
 function Alert(props: any) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -14,11 +16,11 @@ function Alert(props: any) {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2)
+    }
+  }
 }));
 
 export const Notification = () => {
@@ -30,8 +32,8 @@ export const Notification = () => {
     dispatch(
       updateNotificationAction({
         ...notication,
-        show: false,
-      }),
+        show: false
+      })
     );
 
   return (
@@ -45,10 +47,6 @@ export const Notification = () => {
           {notication.message}
         </Alert>
       </Snackbar>
-      {/* <Alert severity="error">This is an error message!</Alert>
-      <Alert severity="warning">This is a warning message!</Alert>
-      <Alert severity="info">This is an information message!</Alert>
-      <Alert severity="success">This is a success message!</Alert> */}
     </Grid>
   );
 };
